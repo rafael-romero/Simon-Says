@@ -1,15 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Simon Dice...</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    
-    
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>SIMON DICE...</h1>
+      <label for="nombre-usuario"
+        >Ingrese su nombre por favor:
+        <input type="text" id="nombre-usuario" placeholder="Ingrese su nombre"
+      /></label>
+      <div id="rondas">
+        <p>Cantidad de rondas: <strong id="cantidad-rondas"></strong></p>
+      </div>
+    </header>
+    <main>
+      <p>
+        Debes memorizar la secuencia de colores y repetirla. <br />
+        Cada vez que repitas correctamente la secuencia, se añadira un color mas
+        a la misma. <br />
+        Si te equivocas pierdes!!! <br />
+      </p>
+      <input type="button" value="JUGAR" />
+    </main>
+    <footer>
+      <table>
+        <caption>
+          Ranking de Puntuacion
+        </caption>
+        <thead>
+          <tr>
+            <th>Jugador</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div id="datos-contacto">
+        <a href="https://github.com/rafael-romero" target="_blank"
+          ><img
+            src="img/logogithub.png"
+            alt="logo de github"
+            width="30px"
+            height="30px"
+          />Mi GitHub</a
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="tel:+541121552117"
+          ><img
+            src="img/telefono.png"
+            alt="logo telefono"
+            width="30px"
+            height="30px"
+          />
+          Tel. 1121552117</a
+        >
+      </div>
+      <br />
+    </footer>
+    <script src="main.js"></script>
+  </body>
 </html>
