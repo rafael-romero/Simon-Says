@@ -1,0 +1,11 @@
+body{
+    background: linear-gradient(45deg, indigo, violet, lightpink);
+}
+
+#datos-contacto{
+    text-align: center;
+}
+
+.oculto{
+    display: none;
+}
