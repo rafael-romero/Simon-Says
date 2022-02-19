@@ -10,23 +10,31 @@
   <body>
     <header>
       <h1>SIMON DICE...</h1>
-      <label for="nombre-usuario"
-        >Ingrese su nombre por favor:
-        <input type="text" id="nombre-usuario" placeholder="Ingrese su nombre"
-      /></label>
+      <label id="nombre-de-usuario" for="nombre-usuario"
+        >Ingrese su nombre de usuario por favor:
+        <input type="text" id="nombre-usuario" placeholder="Ingrese solo letras"/>
+      <input type="button" value="OK" id="boton-ok">
+      </label>
       <div id="rondas">
         <p>Cantidad de rondas: <strong id="cantidad-rondas"></strong></p>
       </div>
     </header>
     <main>
-      <p>
+      <p id="explicacion-de-como-jugar">
         Debes memorizar la secuencia de colores y repetirla. <br />
         Cada vez que repitas correctamente la secuencia, se añadira un color mas
         a la misma. <br />
         Si te equivocas pierdes!!! <br />
       </p>
-      <input type="button" value="JUGAR" />
+      <input type="button" value="JUGAR" /><br><br><br><br>
+      <div id="conjunto-botones">
+        <input type="button" id="boton-verde" class="botones-colores">
+        <input type="button" id="boton-rojo" class="botones-colores">
+        <input type="button" id="boton-amarillo" class="botones-colores">
+        <input type="button" id="boton-azul" class="botones-colores">
+      </div>
     </main>
+    <br><br><br><br>
     <footer>
       <table>
         <caption>
@@ -38,7 +46,9 @@
             <th>Puntos</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <!--dinamicamente se tienen que crear<tr> y 2 <td> con los datos-->
+        </tbody>
       </table>
 
       <div id="datos-contacto">
@@ -63,5 +73,6 @@
       <br />
     </footer>
     <script src="main.js"></script>
+    <script src="pruebas-simon-says.js"></script>
   </body>
 </html>
