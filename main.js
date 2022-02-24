@@ -3,10 +3,10 @@ function validarNombre(nombre){
         return "Debe escribir al menos un caracter";
     }
     if(nombre.length > 30){
-        return "Su nombre de usuario debe tener menos de 30 caracteres"
+        return "Su nombre de usuario debe tener menos de 30 caracteres";
     }
     if(!/^[a-z]+$/i.test(nombre)){
-        return "El campo nombre de usuario solo acepta letras"
+        return "El campo nombre de usuario solo acepta letras";
     }
     return "";
 }
