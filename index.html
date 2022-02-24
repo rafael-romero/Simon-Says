@@ -29,10 +29,24 @@
       </p>
       <input type="button" value="JUGAR" class="oculto" id="btn-jugar"/><br><br><br><br>
       <div id="conjunto-botones">
-        <input type="button" id="boton-verde" class="botones-colores">
-        <input type="button" id="boton-rojo" class="botones-colores">
-        <input type="button" id="boton-amarillo" class="botones-colores">
-        <input type="button" id="boton-azul" class="botones-colores">
+        <input type="button" id="boton-green" class="botones-colores" disabled>
+        <audio src="sounds/beeps-bonks-boinks 3.mp3" id="sonido-btn-green"></audio>
+        <input type="button" id="boton-red" class="botones-colores" disabled>
+        <audio src="sounds/beeps-bonks-boinks 38.mp3" id="sonido-btn-red"></audio>
+        <input type="button" id="boton-yellow" class="botones-colores" disabled>
+        <audio src="sounds/beeps-bonks-boinks 4.mp3" id="sonido-btn-yellow"></audio>
+        <input type="button" id="boton-blue" class="botones-colores" disabled>
+        <audio src="sounds/beeps-bonks-boinks 8.mp3" id="sonido-btn-blue"></audio>
+      </div>
+      <div id="finalizado-juego" class="oculto">
+        <p id="felicitaciones">
+          Felicitaciones <em id="nombre"></em> usted llego a completar <em id="n-rondas"></em>
+          de forma exitosa!!! <br>
+          Desea volver a jugar???
+        </p>
+        <audio id="audio-finalizado" src="sounds/cartoon_success_fanfair.mp3"></audio>
+        <input type="button" value="SI" id="btn-si">
+        <input type="button" value="NO" id="btn-no">
       </div>
     </main>
     <br><br><br><br>
