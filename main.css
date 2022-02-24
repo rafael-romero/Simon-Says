@@ -2,22 +2,27 @@ body{
     background: linear-gradient(45deg, indigo, violet, lightpink);
 }
 
-#datos-contacto{
-    text-align: center;
+#advertencia-nombre{
+    font-size: x-large;
+    color: red;
 }
 
-.oculto{
-    display: none;
-}
-
-.error{
-    border: red solid 2px;
-}
 
 #explicacion-de-como-jugar{
     border: double rgb(138, 4, 138) 10px;
     text-align: center;
     font-size: larger;
+    color: #09113c;
+}
+
+#btn-jugar{
+    margin-left: 45%;
+    width: 100px;
+    height: 50px;
+    border-radius: 20%;
+    background-color: #09113c;
+    color:#d2b56c;
+    font-size: x-large;
 }
 
 .botones-colores{
@@ -33,20 +38,65 @@ body{
     display: grid;
     justify-content: center;
     grid-template-columns: 100px 100px;
+    grid-gap: 20px;
 }
 
-#boton-verde{
-    background-color: green;
+#boton-green{
+    background-color: green; 
+}
+#boton-green:hover{
+    background-color: hsl(120, 100%, 35%);
 }
 
-#boton-rojo{
+.marcado-green{
+    transform: scale(1.2);
+    background-color: hsl(120, 100%, 35%);
+}
+
+#boton-red{
     background-color: red;
 }
-
-#boton-amarillo{
-    background-color: yellow;
+#boton-red:hover{
+    background-color: hsl(0, 100%, 60%);
 }
 
-#boton-azul{
+.marcado-red{
+    transform: scale(1.2);
+    background-color: hsl(0, 100%, 60%);
+}
+
+#boton-yellow{
+    background-color: yellow;
+}
+#boton-yellow:hover{
+    background-color: hsl(60, 100%, 70%);
+}
+
+.marcado-yello{
+    transform: scale(1.2);
+    background-color: hsl(60, 100%, 70%);
+}
+
+#boton-blue{
     background-color: blue;
+}
+#boton-blue:hover{
+    background-color: hsl(240, 100%, 60%);
+}
+
+.marcado-blue{
+    transform: scale(1.2);
+    background-color: hsl(240, 100%, 60%);
+}
+
+#datos-contacto{
+    text-align: center;
+}
+
+.oculto{
+    display: none;
+}
+
+.error{
+    border: red solid 2px;
 }
