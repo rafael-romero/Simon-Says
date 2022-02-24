@@ -15,7 +15,8 @@
         <input type="text" id="nombre-usuario" placeholder="Ingrese solo letras"/>
       <input type="button" value="OK" id="boton-ok">
       </label>
-      <div id="rondas">
+      <strong id="advertencia-nombre"></strong>
+      <div id="rondas" class="oculto">
         <p>Cantidad de rondas: <strong id="cantidad-rondas"></strong></p>
       </div>
     </header>
@@ -26,7 +27,7 @@
         a la misma. <br />
         Si te equivocas pierdes!!! <br />
       </p>
-      <input type="button" value="JUGAR" /><br><br><br><br>
+      <input type="button" value="JUGAR" class="oculto" id="btn-jugar"/><br><br><br><br>
       <div id="conjunto-botones">
         <input type="button" id="boton-verde" class="botones-colores">
         <input type="button" id="boton-rojo" class="botones-colores">
