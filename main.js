@@ -110,40 +110,46 @@ function compararSecuencias(arregloPc, arregloUsuario) {
   }
 }
 
-function mostrarUOcultarElementos(elemento){
-    document.querySelector(`#${elemento}`).classList.toggle("oculto");
+function mostrarElementos(elemento) {
+  document.querySelector(`#${elemento}`).classList.toggle("oculto");
 }
 
+function ocultarElementos(elemento) {
+  document.querySelector(`#${elemento}`).classList.toggle("oculto");
+}
 
 const $botonNO = document.querySelector("#btn-no");
-$botonNO.onclick = function(){
-    alert("Gracias, esperamos el juego haya sido de su agrado!!!");
-    return false;
-}
+$botonNO.onclick = function () {
+  alert("Gracias, esperamos el juego haya sido de su agrado!!!");
+  ocultarElementos("rondas");
+  ocultarElementos("registro-usuario");
+  ocultarElementos("btn-no");
+  ocultarElementos("btn-si");
+  ocultarElementos("finalizado-juego");
+  return false;
+};
 
 const $botonSi = document.querySelector("#btn-si");
-$botonSi.onclick = function(){
-    mostrarUOcultarElementos("finalizado-juego");
-    mostrarUOcultarElementos("conjunto-botones");
-    mostrarUOcultarElementos("btn-jugar");
-    // document.querySelector("#finalizado-juego").classList.add("oculto");
-    // document.querySelector("#conjunto-botones").classList.remove("oculto");
-    // document.querySelector("#btn-jugar").classList.remove("oculto");
-    return false;
+$botonSi.onclick = function () {
+  ocultarElementos("finalizado-juego");
+  mostrarElementos("conjunto-botones");
+  mostrarElementos("btn-jugar");
+  return false;
+};
+
+function mostrarFinalizadoJuego() {
+  document.querySelector("#n-rondas").textContent = String(
+    cantidadDeRondas - 1
+  );
+  mostrarElementos("finalizado-juego");
 }
 
-function mostrarFinalizadoJuego(){
-    document.querySelector("#n-rondas").textContent = String(cantidadDeRondas - 1); 
-    mostrarUOcultarElementos("finalizado-juego");
-    //document.querySelector("#finalizado-juego").classList.remove("oculto");
-}
-
-function finalizarJuego(){
-    const $sonidoFinalizadoJuego = document.querySelector("#audio-finalizado");
-    $sonidoFinalizadoJuego.play();
-    mostrarFinalizadoJuego()
-    mostrarUOcultarElementos("conjunto-botones");    
-    //document.querySelector("#conjunto-botones").classList.add("oculto");
+function finalizarJuego() {
+  const $sonidoFinalizadoJuego = document.querySelector("#audio-finalizado");
+  $sonidoFinalizadoJuego.play();
+  mostrarFinalizadoJuego();
+  ocultarElementos("conjunto-botones");
+  ocultarElementos("rondas");
 }
 
 let arregloJugadasPc = [];
@@ -178,16 +184,13 @@ const coloresHover = {
 }
 
 const $botonJugar = document.querySelector("#btn-jugar");
-$botonJugar.onclick = function(){
-    arregloJugadasPc = [];
-    mostrarUOcultarElementos("btn-jugar");
-    //document.querySelector("#btn-jugar").classList.add("oculto");
-    reiniciarContadorDeRondas();
-    mostrarUOcultarElementos("rondas");
-    //document.querySelector("#rondas").classList.remove("oculto");
-    desarrollarJuego();
-    return false;
-}
+$botonJugar.onclick = function () {
+  arregloJugadasPc = [];
+  ocultarElementos("btn-jugar");
+  reiniciarContadorDeRondas();
+  mostrarElementos("rondas");
+  desarrollarJuego();
+};
 
 const $botongreen = document.querySelector("#boton-green");
 const $sonidoBtngreen = document.querySelector("#sonido-btn-green");
