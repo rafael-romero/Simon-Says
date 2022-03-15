@@ -170,18 +170,11 @@ function desarrollarJuego(){
 }
 
 const colores = {
-    1: "green",
-    2: "red",
-    3: "yellow",
-    4: "blue"
-}
-
-const coloresHover = {
-    green: "rgb(0, 179, 0)",
-    red: "rgb(255, 51, 51)",
-    yellow: "rgb(255, 255, 102)",
-    blue: "rgb(51, 51, 255)"
-}
+  1: "green",
+  2: "red",
+  3: "yellow",
+  4: "blue",
+};
 
 const $botonJugar = document.querySelector("#btn-jugar");
 $botonJugar.onclick = function () {
