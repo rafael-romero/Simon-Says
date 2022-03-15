@@ -25,6 +25,16 @@ body{
     font-size: x-large;
 }
 
+.botones-comunes{
+    border: indigo solid 2px;;
+    border-radius: 15px;
+    color: indigo;
+    background-color:lightskyblue;
+    width: 35px;
+    height: 35px;
+}
+
+
 .botones-colores{
     width: 100px;
     height: 100px;
