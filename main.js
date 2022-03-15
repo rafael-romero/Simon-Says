@@ -40,13 +40,10 @@ $botonOk.onclick = function (event) {
   }
   event.preventDefault();
 };
-    }
-    event.preventDefault();
-}
-function reiniciarContadorDeRondas(){
-    return document.querySelector("#cantidad-rondas").textContent = "0";
-}
 
+function reiniciarContadorDeRondas() {
+  cantidadDeRondas = 0;
+  document.querySelector("#cantidad-rondas").textContent = cantidadDeRondas;
 }
 
 function activarBotones() {
