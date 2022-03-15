@@ -93,18 +93,21 @@ function generarSecuenciaPC() {
   mostrarSecuenciaPC(arregloJugadasPc);
 }
 
-function compararSecuencias(arregloPc, arregloUsuario){
-    for(let i = 0; i < arregloUsuario.length; i++){
-        if(arregloPc[i] !== arregloUsuario[i]){
-            //return terminoJuego = true;
-            desactivarBotones();
-            finalizarJuego();
-        }
+function compararSecuencias(arregloPc, arregloUsuario) {
+  for (let i = 0; i < arregloUsuario.length; i++) {
+    if (arregloPc[i] !== arregloUsuario[i]) {
+      desactivarBotones();
+      finalizarJuego();
+      return;
     }
-    if(arregloPc.length === arregloUsuario.length){
-        desactivarBotones();
-        desarrollarJuego();
-    }
+  }
+  if (arregloPc.length === arregloUsuario.length) {
+    desactivarBotones();
+    setTimeout(function () {
+      alert("Turno de la PC");
+    }, miniPausa * 2);
+    setTimeout(desarrollarJuego, miniPausa * 2);
+  }
 }
 
 function mostrarUOcultarElementos(elemento){
