@@ -169,13 +169,6 @@ function desarrollarJuego() {
  
 const colores = ["verde", "rojo", "amarillo", "azul"];
 
-// const colores = {
-//   1: "green",
-//   2: "red",
-//   3: "yellow",
-//   4: "blue",
-// };
-
 const $botonJugar = document.querySelector("#btn-jugar");
 $botonJugar.onclick = function () {
   arregloJugadasPc = [];
