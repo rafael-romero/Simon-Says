@@ -61,12 +61,19 @@ function desactivarBotones() {
   });
 }
 
-// function cambiarScalaANormalBoton($botonColor){
-//     $botonColor.style.transform.scale = "1";
-// }
+function reproducirSonido(sonido) {
+  sonido.play();
+}
 
-function borrarClase($botonColor, color){
-    $botonColor.classList.remove(`marcado-${color}`)
+function animarBoton(boton) {
+  boton.style.opacity = 0.5;
+  setTimeout(function () {
+    boton.style.opacity = 1;
+  }, 500);
+  boton.style.transform = "scale(1.3)";
+  setTimeout(function () {
+    boton.style.transform = "scale(1)";
+  }, 500);
 }
 
 function mostrarSecuenciaPC(arreglo){
