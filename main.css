@@ -54,49 +54,17 @@ body{
 #boton-green{
     background-color: green; 
 }
-#boton-green:hover{
-    background-color: hsl(120, 100%, 35%);
-}
-
-.marcado-green{
-    transform: scale(1.2);
-    background-color: hsl(120, 100%, 35%);
-}
 
 #boton-red{
     background-color: red;
-}
-#boton-red:hover{
-    background-color: hsl(0, 100%, 60%);
-}
-
-.marcado-red{
-    transform: scale(1.2);
-    background-color: hsl(0, 100%, 60%);
 }
 
 #boton-yellow{
     background-color: yellow;
 }
-#boton-yellow:hover{
-    background-color: hsl(60, 100%, 70%);
-}
-
-.marcado-yello{
-    transform: scale(1.2);
-    background-color: hsl(60, 100%, 70%);
-}
 
 #boton-blue{
     background-color: blue;
-}
-#boton-blue:hover{
-    background-color: hsl(240, 100%, 60%);
-}
-
-.marcado-blue{
-    transform: scale(1.2);
-    background-color: hsl(240, 100%, 60%);
 }
 
 #datos-contacto{
