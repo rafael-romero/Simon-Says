@@ -86,10 +86,11 @@ function mostrarSecuenciaPC(arreglo) {
   });
 }
 
-function generarSecuenciaPC(){
-    const numeroAleatorio= Math.floor(Math.random() * 4) + 1;
-    arregloJugadasPc.push(colores[numeroAleatorio]);
-    mostrarSecuenciaPC(arregloJugadasPc);
+function generarSecuenciaPC() {
+  const CANTIDAD_DE_COLORES = 4;
+  const numeroAleatorio = Math.floor(Math.random() * CANTIDAD_DE_COLORES) + 1;
+  arregloJugadasPc.push(colores[numeroAleatorio]);
+  mostrarSecuenciaPC(arregloJugadasPc);
 }
 
 function compararSecuencias(arregloPc, arregloUsuario){
