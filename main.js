@@ -85,7 +85,7 @@ function mostrarSecuenciaPC(arreglo) {
 
 function generarSecuenciaPC() {
   const CANTIDAD_DE_COLORES = 4;
-  const numeroAleatorio = Math.floor(Math.random() * CANTIDAD_DE_COLORES) + 1;
+  const numeroAleatorio = Math.floor(Math.random() * CANTIDAD_DE_COLORES);
   arregloJugadasPc.push(colores[numeroAleatorio]);
   mostrarSecuenciaPC(arregloJugadasPc);
 }
@@ -166,13 +166,15 @@ function desarrollarJuego() {
     activarBotones();
   }, tiempoRetrasadoUsuario + 200);
 }
+ 
+const colores = ["verde", "rojo", "amarillo", "azul"];
 
-const colores = {
-  1: "green",
-  2: "red",
-  3: "yellow",
-  4: "blue",
-};
+// const colores = {
+//   1: "green",
+//   2: "red",
+//   3: "yellow",
+//   4: "blue",
+// };
 
 const $botonJugar = document.querySelector("#btn-jugar");
 $botonJugar.onclick = function () {
