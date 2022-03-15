@@ -56,30 +56,24 @@ function desactivarBotones() {
   document.querySelectorAll(".botones-colores").forEach(function(botonColor){
     botonColor.disabled = true;
   });
-}
+};
 
-function reproducirSonido(sonido) {
-  sonido.play();
-}
-
-function animarBoton(boton) {
+function animarBoton(boton, sonido){
   boton.style.opacity = 0.5;
-  setTimeout(function () {
-    boton.style.opacity = 1;
-  }, 500);
   boton.style.transform = "scale(1.3)";
-  setTimeout(function () {
+  sonido.play();
+  setTimeout(function(){
+    boton.style.opacity = 1;
     boton.style.transform = "scale(1)";
-  }, 500);
-}
+  }, (MILISEGUNDOS/2));
+};
 
 function mostrarSecuenciaPC(arreglo) {
   arreglo.forEach(function (color, index) {
     const tiempoRetrasadoPC = (index + 1) * MILISEGUNDOS;
     const $sonido = document.querySelector(`#sonido-btn-${color}`);
     const $botonColor = document.querySelector(`#boton-${color}`);
-    setTimeout(animarBoton, tiempoRetrasadoPC, $botonColor);
-    setTimeout(reproducirSonido, tiempoRetrasadoPC, $sonido);
+    setTimeout(animarBoton, tiempoRetrasadoPC, $botonColor, $sonido);
   });
 }
 
@@ -181,35 +175,31 @@ $botonJugar.onclick = function () {
 const $botonverde = document.querySelector("#boton-verde");
 const $sonidoBtnverde = document.querySelector("#sonido-btn-verde");
 $botonverde.onclick = function () {
-  $sonidoBtnverde.play();
   arregloJugadasUsuario.push("verde");
-  animarBoton($botonverde);
+  animarBoton($botonverde, $sonidoBtnverde);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
 
 const $botonrojo = document.querySelector("#boton-rojo");
 const $sonidoBtnrojo = document.querySelector("#sonido-btn-rojo");
 $botonrojo.onclick = function () {
-  $sonidoBtnrojo.play();
   arregloJugadasUsuario.push("rojo");
-  animarBoton($botonrojo);
+  animarBoton($botonrojo, $sonidoBtnrojo);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
 
 const $botonamarillo = document.querySelector("#boton-amarillo");
 const $sonidoBtnamarillo = document.querySelector("#sonido-btn-amarillo");
 $botonamarillo.onclick = function () {
-  $sonidoBtnamarillo.play();
   arregloJugadasUsuario.push("amarillo");
-  animarBoton($botonamarillo);
+  animarBoton($botonamarillo, $sonidoBtnamarillo);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
 
 const $botonazul = document.querySelector("#boton-azul");
 const $sonidoBtnazul = document.querySelector("#sonido-btn-azul");
 $botonazul.onclick = function () {
-  $sonidoBtnazul.play();
   arregloJugadasUsuario.push("azul");
-  animarBoton($botonazul);
+  animarBoton($botonazul, $sonidoBtnazul);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
