@@ -56,36 +56,30 @@ function desactivarBotones() {
   document.querySelectorAll(".botones-colores").forEach(function(botonColor){
     botonColor.disabled = true;
   });
-}
+};
 
-function reproducirSonido(sonido) {
-  sonido.play();
-}
-
-function animarBoton(boton) {
+function animarBoton(boton, sonido){
   boton.style.opacity = 0.5;
-  setTimeout(function () {
-    boton.style.opacity = 1;
-  }, 500);
   boton.style.transform = "scale(1.3)";
-  setTimeout(function () {
+  sonido.play();
+  setTimeout(function(){
+    boton.style.opacity = 1;
     boton.style.transform = "scale(1)";
-  }, 500);
-}
+  }, (MILISEGUNDOS/2));
+};
 
 function mostrarSecuenciaPC(arreglo) {
   arreglo.forEach(function (color, index) {
     const tiempoRetrasadoPC = (index + 1) * MILISEGUNDOS;
     const $sonido = document.querySelector(`#sonido-btn-${color}`);
     const $botonColor = document.querySelector(`#boton-${color}`);
-    setTimeout(animarBoton, tiempoRetrasadoPC, $botonColor);
-    setTimeout(reproducirSonido, tiempoRetrasadoPC, $sonido);
+    setTimeout(animarBoton, tiempoRetrasadoPC, $botonColor, $sonido);
   });
 }
 
 function generarSecuenciaPC() {
   const CANTIDAD_DE_COLORES = 4;
-  const numeroAleatorio = Math.floor(Math.random() * CANTIDAD_DE_COLORES) + 1;
+  const numeroAleatorio = Math.floor(Math.random() * CANTIDAD_DE_COLORES);
   arregloJugadasPc.push(colores[numeroAleatorio]);
   mostrarSecuenciaPC(arregloJugadasPc);
 }
@@ -118,8 +112,6 @@ function ocultarElementos(elemento) {
 const $botonNO = document.querySelector("#btn-no");
 $botonNO.onclick = function () {
   alert("Gracias, esperamos el juego haya sido de su agrado!!!");
-  ocultarElementos("rondas");
-  ocultarElementos("registro-usuario");
   ocultarElementos("btn-no");
   ocultarElementos("btn-si");
   ocultarElementos("finalizado-juego");
@@ -131,6 +123,7 @@ $botonSi.onclick = function () {
   ocultarElementos("finalizado-juego");
   mostrarElementos("conjunto-botones");
   mostrarElementos("btn-jugar");
+  mostrarElementos("registro-usuario");
   return false;
 };
 
@@ -143,10 +136,13 @@ function mostrarFinalizadoJuego() {
 
 function finalizarJuego() {
   const $sonidoFinalizadoJuego = document.querySelector("#audio-finalizado");
-  $sonidoFinalizadoJuego.play();
+  setTimeout(function(){
+    $sonidoFinalizadoJuego.play();
+  }, MILISEGUNDOS);
   mostrarFinalizadoJuego();
   ocultarElementos("conjunto-botones");
   ocultarElementos("rondas");
+  ocultarElementos("registro-usuario")
 }
 
 let arregloJugadasPc = [];
@@ -166,13 +162,8 @@ function desarrollarJuego() {
     activarBotones();
   }, tiempoRetrasadoUsuario + 200);
 }
-
-const colores = {
-  1: "green",
-  2: "red",
-  3: "yellow",
-  4: "blue",
-};
+ 
+const colores = ["verde", "rojo", "amarillo", "azul"];
 
 const $botonJugar = document.querySelector("#btn-jugar");
 $botonJugar.onclick = function () {
@@ -183,38 +174,34 @@ $botonJugar.onclick = function () {
   desarrollarJuego();
 };
 
-const $botongreen = document.querySelector("#boton-green");
-const $sonidoBtngreen = document.querySelector("#sonido-btn-green");
-$botongreen.onclick = function () {
-  $sonidoBtngreen.play();
-  arregloJugadasUsuario.push("green");
-  animarBoton($botongreen);
+const $botonverde = document.querySelector("#boton-verde");
+const $sonidoBtnverde = document.querySelector("#sonido-btn-verde");
+$botonverde.onclick = function () {
+  arregloJugadasUsuario.push("verde");
+  animarBoton($botonverde, $sonidoBtnverde);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
 
-const $botonred = document.querySelector("#boton-red");
-const $sonidoBtnred = document.querySelector("#sonido-btn-red");
-$botonred.onclick = function () {
-  $sonidoBtnred.play();
-  arregloJugadasUsuario.push("red");
-  animarBoton($botonred);
+const $botonrojo = document.querySelector("#boton-rojo");
+const $sonidoBtnrojo = document.querySelector("#sonido-btn-rojo");
+$botonrojo.onclick = function () {
+  arregloJugadasUsuario.push("rojo");
+  animarBoton($botonrojo, $sonidoBtnrojo);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
 
-const $botonyellow = document.querySelector("#boton-yellow");
-const $sonidoBtnyellow = document.querySelector("#sonido-btn-yellow");
-$botonyellow.onclick = function () {
-  $sonidoBtnyellow.play();
-  arregloJugadasUsuario.push("yellow");
-  animarBoton($botonyellow);
+const $botonamarillo = document.querySelector("#boton-amarillo");
+const $sonidoBtnamarillo = document.querySelector("#sonido-btn-amarillo");
+$botonamarillo.onclick = function () {
+  arregloJugadasUsuario.push("amarillo");
+  animarBoton($botonamarillo, $sonidoBtnamarillo);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
 
-const $botonblue = document.querySelector("#boton-blue");
-const $sonidoBtnblue = document.querySelector("#sonido-btn-blue");
-$botonblue.onclick = function () {
-  $sonidoBtnblue.play();
-  arregloJugadasUsuario.push("blue");
-  animarBoton($botonblue);
+const $botonazul = document.querySelector("#boton-azul");
+const $sonidoBtnazul = document.querySelector("#sonido-btn-azul");
+$botonazul.onclick = function () {
+  arregloJugadasUsuario.push("azul");
+  animarBoton($botonazul, $sonidoBtnazul);
   compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
 };
