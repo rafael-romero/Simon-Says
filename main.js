@@ -47,23 +47,19 @@ function reiniciarContadorDeRondas(){
     return document.querySelector("#cantidad-rondas").textContent = "0";
 }
 
-function activarBotones(){
-    $botongreen.disabled = false;
-    $botonred.disabled = false;
-    $botonyellow.disabled = false;
-    $botonblue.disabled = false;
 }
 
-function desactivarBotones(){
-    $botongreen.disabled = true;
-    $botonred.disabled = true;
-    $botonyellow.disabled = true;
-    $botonblue.disabled = true;
+function activarBotones() {
+  document.querySelectorAll(".botones-colores").forEach(function(botonColor){
+    botonColor.disabled = false;
+  });  
 }
 
-// function cambiarColorBackground($botonColor , color){
-//     $botonColor.style.backgroundColor = color;
-// }
+function desactivarBotones() {
+  document.querySelectorAll(".botones-colores").forEach(function(botonColor){
+    botonColor.disabled = true;
+  });
+}
 
 // function cambiarScalaANormalBoton($botonColor){
 //     $botonColor.style.transform.scale = "1";
