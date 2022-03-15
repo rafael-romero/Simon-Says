@@ -112,8 +112,6 @@ function ocultarElementos(elemento) {
 const $botonNO = document.querySelector("#btn-no");
 $botonNO.onclick = function () {
   alert("Gracias, esperamos el juego haya sido de su agrado!!!");
-  ocultarElementos("rondas");
-  ocultarElementos("registro-usuario");
   ocultarElementos("btn-no");
   ocultarElementos("btn-si");
   ocultarElementos("finalizado-juego");
@@ -125,6 +123,7 @@ $botonSi.onclick = function () {
   ocultarElementos("finalizado-juego");
   mostrarElementos("conjunto-botones");
   mostrarElementos("btn-jugar");
+  mostrarElementos("registro-usuario");
   return false;
 };
 
@@ -137,10 +136,13 @@ function mostrarFinalizadoJuego() {
 
 function finalizarJuego() {
   const $sonidoFinalizadoJuego = document.querySelector("#audio-finalizado");
-  $sonidoFinalizadoJuego.play();
+  setTimeout(function(){
+    $sonidoFinalizadoJuego.play();
+  }, MILISEGUNDOS);
   mostrarFinalizadoJuego();
   ocultarElementos("conjunto-botones");
   ocultarElementos("rondas");
+  ocultarElementos("registro-usuario")
 }
 
 let arregloJugadasPc = [];
