@@ -152,18 +152,19 @@ function finalizarJuego() {
 let arregloJugadasPc = [];
 let arregloJugadasUsuario = [];
 let cantidadDeRondas = 0;
-//let terminoJuego = false;
+const MILISEGUNDOS = 1000;
 
-function desarrollarJuego(){
-    //while(terminoJuego !== true){
-        cantidadDeRondas++;
-        document.querySelector("#cantidad-rondas").textContent = String(cantidadDeRondas);
-        generarSecuenciaPC();
-        alert("Es su turno de jugar!!!")
-        arregloJugadasUsuario = [];
-        activarBotones();
-        //terminoJuego = compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-    //}
+function desarrollarJuego() {
+  cantidadDeRondas++;
+  document.querySelector("#cantidad-rondas").textContent =
+    String(cantidadDeRondas);
+  generarSecuenciaPC();
+  arregloJugadasUsuario = [];
+  const tiempoRetrasadoUsuario = (arregloJugadasPc.length + 1) * MILISEGUNDOS;
+  setTimeout(function () {
+    alert("Es su turno de jugar!!!");
+    activarBotones();
+  }, tiempoRetrasadoUsuario + 200);
 }
 
 const colores = {
