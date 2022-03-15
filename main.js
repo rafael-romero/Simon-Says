@@ -1,38 +1,45 @@
-function validarNombre(nombre){
-    if(nombre.length === 0){
-        return "Debe escribir al menos un caracter";
-    }
-    if(nombre.length > 30){
-        return "Su nombre de usuario debe tener menos de 30 caracteres";
-    }
-    if(!/^[a-z]+$/i.test(nombre)){
-        return "El campo nombre de usuario solo acepta letras";
-    }
-    return "";
+function validarNombre(nombre) {
+  if (nombre.length === 0) {
+    return "Debe escribir al menos un caracter";
+  }
+  if (nombre.length > 30) {
+    return "Su nombre de usuario debe tener menos de 30 caracteres";
+  }
+  if (!/^[a-z]+$/i.test(nombre)) {
+    return "El campo nombre de usuario solo acepta letras";
+  }
+  return "";
 }
 
 let nombreDeUsuario = "";
+const miniPausa = 700;
 const $botonOk = document.querySelector("#boton-ok");
-$botonOk.onclick = function(event){
-    document.querySelector("#btn-jugar").classList.add("oculto");
-    const $nombre = document.querySelector("#nombre-usuario").value
-    const errorNombre = validarNombre($nombre);
-    const mensajeError = document.querySelector("#advertencia-nombre");
-    if (errorNombre){
-        document.querySelector("#nombre-usuario").classList.add("error");
-        mensajeError.textContent = errorNombre;
-        mensajeError.classList.remove("oculto");
-    }else {
-        mensajeError.classList.add("oculto");
-        document.querySelector("#nombre-usuario").classList.remove("error");
-    }
-    nombreDeUsuario = $nombre;
-    document.querySelector("#nombre").textContent = nombreDeUsuario;
-    if(!errorNombre){
-        alert(`Bienvenidx Estimadx ${$nombre}...jugamos???`);
-        //document.querySelector("#btn-jugar").classList.remove("oculto");
-        //hace lo mismo que la linea de abajo, la dejo hasta estar seguro
-        mostrarUOcultarElementos("btn-jugar");
+$botonOk.onclick = function (event) {
+  document.querySelector("#btn-jugar").classList.add("oculto");
+  const $nombre = document.querySelector("#nombre-usuario").value;
+  const errorNombre = validarNombre($nombre);
+  const mensajeError = document.querySelector("#advertencia-nombre");
+  if (errorNombre) {
+    document.querySelector("#nombre-usuario").classList.add("error");
+    mensajeError.textContent = errorNombre;
+    mensajeError.classList.remove("oculto");
+  } else {
+    mensajeError.classList.add("oculto");
+    document.querySelector("#nombre-usuario").classList.remove("error");
+  }
+  nombreDeUsuario = $nombre;
+  document.querySelector("#usuario").textContent = nombreDeUsuario;
+  document.querySelector("#nombre").textContent = nombreDeUsuario;
+  if (!errorNombre) {
+    setTimeout(function () {
+      alert(`Bienvenidx Estimadx ${$nombre}...jugamos???`);
+      mostrarElementos("btn-jugar");
+    }, miniPausa);
+    ocultarElementos("nombre-de-usuario");
+    mostrarElementos("registro-usuario");
+  }
+  event.preventDefault();
+};
     }
     event.preventDefault();
 }
@@ -189,33 +196,36 @@ $botonJugar.onclick = function(){
 
 const $botongreen = document.querySelector("#boton-green");
 const $sonidoBtngreen = document.querySelector("#sonido-btn-green");
-$botongreen.onclick = function(){
-    $sonidoBtngreen.play();
-    arregloJugadasUsuario.push("green");
-    compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-}
+$botongreen.onclick = function () {
+  $sonidoBtngreen.play();
+  arregloJugadasUsuario.push("green");
+  animarBoton($botongreen);
+  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
+};
 
 const $botonred = document.querySelector("#boton-red");
 const $sonidoBtnred = document.querySelector("#sonido-btn-red");
-$botonred.onclick = function(){
-    $sonidoBtnred.play();
-    arregloJugadasUsuario.push("red");
-    compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-}
+$botonred.onclick = function () {
+  $sonidoBtnred.play();
+  arregloJugadasUsuario.push("red");
+  animarBoton($botonred);
+  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
+};
 
 const $botonyellow = document.querySelector("#boton-yellow");
 const $sonidoBtnyellow = document.querySelector("#sonido-btn-yellow");
-$botonyellow.onclick = function(){
-    $sonidoBtnyellow.play();
-    arregloJugadasUsuario.push("yellow");
-    compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-}
+$botonyellow.onclick = function () {
+  $sonidoBtnyellow.play();
+  arregloJugadasUsuario.push("yellow");
+  animarBoton($botonyellow);
+  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
+};
 
 const $botonblue = document.querySelector("#boton-blue");
 const $sonidoBtnblue = document.querySelector("#sonido-btn-blue");
-$botonblue.onclick = function(){
-    $sonidoBtnblue.play();
-    arregloJugadasUsuario.push("blue");
-    compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-}
-
+$botonblue.onclick = function () {
+  $sonidoBtnblue.play();
+  arregloJugadasUsuario.push("blue");
+  animarBoton($botonblue);
+  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
+};
