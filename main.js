@@ -76,26 +76,14 @@ function animarBoton(boton) {
   }, 500);
 }
 
-function mostrarSecuenciaPC(arreglo){
-    arreglo.forEach(function(color){
-        document.querySelector(`#sonido-btn-${color}`).play();
-        const $botonColor = document.querySelector(`#boton-${color}`);
-        $botonColor.classList.add(`marcado-${color}`);
-        // $botonColor.style.backgroundColor = `coloresHover[color]`;
-        // $botonColor.style.transform.scale = "1.2";
-        setTimeout(borrarClase($botonColor, color), 2000)
-
-        // setTimeout(cambiarScalaANormalBoton($botonColor), 2000);
-        // setTimeout(cambiarColorBackground($botonColor, color), 2000);
-        
-        //mostrar el boton con un color distinto y hacer sonido
-        // document.querySelector(`#boton-${color}`).style.backgroundColor = coloresHover[color]
-        // document.querySelector(`#boton-${color}`).style.transform = scale(1.2);
-        
-        //const $sonido =  document.querySelector(`#sonido-btn-${color}`);
-        //$sonido.play();
-        
-    });
+function mostrarSecuenciaPC(arreglo) {
+  arreglo.forEach(function (color, index) {
+    const tiempoRetrasadoPC = (index + 1) * MILISEGUNDOS;
+    const $sonido = document.querySelector(`#sonido-btn-${color}`);
+    const $botonColor = document.querySelector(`#boton-${color}`);
+    setTimeout(animarBoton, tiempoRetrasadoPC, $botonColor);
+    setTimeout(reproducirSonido, tiempoRetrasadoPC, $sonido);
+  });
 }
 
 function generarSecuenciaPC(){
