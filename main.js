@@ -144,6 +144,8 @@ let arregloJugadasPc = [];
 let arregloJugadasUsuario = [];
 let cantidadDeRondas = 0;
 const MILISEGUNDOS = 1000;
+const colores = ["verde", "rojo", "amarillo", "azul"];
+
 
 function desarrollarJuego() {
   cantidadDeRondas++;
@@ -158,7 +160,6 @@ function desarrollarJuego() {
   }, tiempoRetrasadoUsuario + 200);
 }
  
-const colores = ["verde", "rojo", "amarillo", "azul"];
 
 const $botonJugar = document.querySelector("#btn-jugar");
 $botonJugar.onclick = function () {
@@ -172,34 +173,14 @@ $botonJugar.onclick = function () {
   desarrollarJuego();
 };
 
-const $botonverde = document.querySelector("#boton-verde");
-const $sonidoBtnverde = document.querySelector("#sonido-btn-verde");
-$botonverde.onclick = function () {
-  arregloJugadasUsuario.push("verde");
-  animarBoton($botonverde, $sonidoBtnverde);
-  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-};
-
-const $botonrojo = document.querySelector("#boton-rojo");
-const $sonidoBtnrojo = document.querySelector("#sonido-btn-rojo");
-$botonrojo.onclick = function () {
-  arregloJugadasUsuario.push("rojo");
-  animarBoton($botonrojo, $sonidoBtnrojo);
-  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-};
-
-const $botonamarillo = document.querySelector("#boton-amarillo");
-const $sonidoBtnamarillo = document.querySelector("#sonido-btn-amarillo");
-$botonamarillo.onclick = function () {
-  arregloJugadasUsuario.push("amarillo");
-  animarBoton($botonamarillo, $sonidoBtnamarillo);
-  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-};
-
-const $botonazul = document.querySelector("#boton-azul");
-const $sonidoBtnazul = document.querySelector("#sonido-btn-azul");
-$botonazul.onclick = function () {
-  arregloJugadasUsuario.push("azul");
-  animarBoton($botonazul, $sonidoBtnazul);
-  compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);
-};
+document.querySelectorAll(".botones-colores").forEach(function(botonColor){
+  botonColor.onclick = function(){
+    const idNombreColor = botonColor.id;
+    const nombreColor = idNombreColor.slice(6);
+    const $sonidoBoton = document.querySelector(`#sonido-btn-${nombreColor}`)
+    
+    arregloJugadasUsuario.push(nombreColor); 
+    animarBoton(botonColor, $sonidoBoton);
+    compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);  
+  };
+});
