@@ -14,7 +14,7 @@ p{
     text-shadow: 0 0 2px indigo;
 }
 
-#nombre-de-usuario, #rondas, #registro-usuario{
+#nombre-de-usuario, #rondas, #registro-usuario, #mensaje-despedida{
     text-align: center;
 }
 

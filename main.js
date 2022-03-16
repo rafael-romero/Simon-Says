@@ -31,10 +31,7 @@ $botonOk.onclick = function (event) {
   document.querySelector("#usuario").textContent = nombreDeUsuario;
   document.querySelector("#nombre").textContent = nombreDeUsuario;
   if (!errorNombre) {
-    setTimeout(function () {
-      alert(`Bienvenidx Estimadx ${$nombre}...jugamos???`);
-      mostrarElementos("btn-jugar");
-    }, miniPausa);
+    setTimeout(function(){mostrarElementos("btn-jugar")}, MILISEGUNDOS);
     ocultarElementos("nombre-de-usuario");
     mostrarElementos("registro-usuario");
   }
@@ -95,7 +92,7 @@ function compararSecuencias(arregloPc, arregloUsuario) {
   if (arregloPc.length === arregloUsuario.length) {
     desactivarBotones();
     setTimeout(function () {
-      alert("Turno de la PC");
+      document.querySelector("#mensajes-de-turno").textContent = "Turno de la pc";
     }, miniPausa * 2);
     setTimeout(desarrollarJuego, miniPausa * 2);
   }
@@ -111,7 +108,7 @@ function ocultarElementos(elemento) {
 
 const $botonNO = document.querySelector("#btn-no");
 $botonNO.onclick = function () {
-  alert("Gracias, esperamos el juego haya sido de su agrado!!!");
+  mostrarElementos("mensaje-despedida");
   ocultarElementos("btn-no");
   ocultarElementos("btn-si");
   ocultarElementos("finalizado-juego");
@@ -123,7 +120,6 @@ $botonSi.onclick = function () {
   ocultarElementos("finalizado-juego");
   mostrarElementos("conjunto-botones");
   mostrarElementos("btn-jugar");
-  mostrarElementos("registro-usuario");
   return false;
 };
 
@@ -142,7 +138,6 @@ function finalizarJuego() {
   mostrarFinalizadoJuego();
   ocultarElementos("conjunto-botones");
   ocultarElementos("rondas");
-  ocultarElementos("registro-usuario")
 }
 
 let arregloJugadasPc = [];
@@ -158,7 +153,7 @@ function desarrollarJuego() {
   arregloJugadasUsuario = [];
   const tiempoRetrasadoUsuario = (arregloJugadasPc.length + 1) * MILISEGUNDOS;
   setTimeout(function () {
-    alert("Es su turno de jugar!!!");
+    document.querySelector("#mensajes-de-turno").textContent = "Es su turno de jugar!!!";
     activarBotones();
   }, tiempoRetrasadoUsuario + 200);
 }
@@ -171,6 +166,9 @@ $botonJugar.onclick = function () {
   ocultarElementos("btn-jugar");
   reiniciarContadorDeRondas();
   mostrarElementos("rondas");
+  if (!document.querySelector("#registro-usuario").classList.contains("oculto")){
+    ocultarElementos("registro-usuario");
+  };
   desarrollarJuego();
 };
 
