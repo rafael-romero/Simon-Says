@@ -34,11 +34,9 @@ function mostrarSecuenciaPC(arreglo) {
   });
 }
 
-function generarSecuenciaPC() {
-  const CANTIDAD_DE_COLORES = 4;
-  const numeroAleatorio = Math.floor(Math.random() * CANTIDAD_DE_COLORES);
+function generarSecuenciaPC(colores) {
+  const numeroAleatorio = Math.floor(Math.random() * colores.length);
   arregloJugadasPc.push(colores[numeroAleatorio]);
-  mostrarSecuenciaPC(arregloJugadasPc);
 }
 
 function compararSecuencias(arregloPc, arregloUsuario) {
@@ -111,7 +109,8 @@ function desarrollarJuego() {
   cantidadDeRondas++;
   document.querySelector("#cantidad-rondas").textContent =
     String(cantidadDeRondas);
-  generarSecuenciaPC();
+  generarSecuenciaPC(colores);
+  mostrarSecuenciaPC(arregloJugadasPc);
   arregloJugadasUsuario = [];
   const tiempoRetrasadoUsuario = (arregloJugadasPc.length + 1) * MILISEGUNDOS;
   setTimeout(function () {
