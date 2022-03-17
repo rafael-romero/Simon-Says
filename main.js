@@ -1,42 +1,8 @@
-function validarNombre(nombre) {
-  if (nombre.length === 0) {
-    return "Debe escribir al menos un caracter";
-  }
-  if (nombre.length > 30) {
-    return "Su nombre de usuario debe tener menos de 30 caracteres";
-  }
-  if (!/^[a-z]+$/i.test(nombre)) {
-    return "El campo nombre de usuario solo acepta letras";
-  }
-  return "";
-}
-
-let nombreDeUsuario = "";
-const miniPausa = 700;
-const $botonOk = document.querySelector("#boton-ok");
-$botonOk.onclick = function (event) {
-  document.querySelector("#btn-jugar").classList.add("oculto");
-  const $nombre = document.querySelector("#nombre-usuario").value;
-  const errorNombre = validarNombre($nombre);
-  const mensajeError = document.querySelector("#advertencia-nombre");
-  if (errorNombre) {
-    document.querySelector("#nombre-usuario").classList.add("error");
-    mensajeError.textContent = errorNombre;
-    mensajeError.classList.remove("oculto");
-  } else {
-    mensajeError.classList.add("oculto");
-    document.querySelector("#nombre-usuario").classList.remove("error");
-  }
-  nombreDeUsuario = $nombre;
-  document.querySelector("#usuario").textContent = nombreDeUsuario;
-  document.querySelector("#nombre").textContent = nombreDeUsuario;
-  if (!errorNombre) {
-    setTimeout(function(){mostrarElementos("btn-jugar")}, MILISEGUNDOS);
-    ocultarElementos("nombre-de-usuario");
-    mostrarElementos("registro-usuario");
-  }
-  event.preventDefault();
-};
+let arregloJugadasPc = [];
+let arregloJugadasUsuario = [];
+let cantidadDeRondas = 0;
+const MILISEGUNDOS = 1000;
+const colores = ["verde", "rojo", "amarillo", "azul"];
 
 function reiniciarContadorDeRondas() {
   cantidadDeRondas = 0;
@@ -54,49 +20,6 @@ function desactivarBotones() {
     botonColor.disabled = true;
   });
 };
-
-function animarBoton(boton, sonido){
-  boton.style.opacity = 0.5;
-  boton.style.transform = "scale(1.3)";
-  sonido.play();
-  setTimeout(function(){
-    boton.style.opacity = 1;
-    boton.style.transform = "scale(1)";
-  }, (MILISEGUNDOS/2));
-};
-
-function mostrarSecuenciaPC(arreglo) {
-  arreglo.forEach(function (color, index) {
-    const tiempoRetrasadoPC = (index + 1) * MILISEGUNDOS;
-    const $sonido = document.querySelector(`#sonido-btn-${color}`);
-    const $botonColor = document.querySelector(`#boton-${color}`);
-    setTimeout(animarBoton, tiempoRetrasadoPC, $botonColor, $sonido);
-  });
-}
-
-function generarSecuenciaPC() {
-  const CANTIDAD_DE_COLORES = 4;
-  const numeroAleatorio = Math.floor(Math.random() * CANTIDAD_DE_COLORES);
-  arregloJugadasPc.push(colores[numeroAleatorio]);
-  mostrarSecuenciaPC(arregloJugadasPc);
-}
-
-function compararSecuencias(arregloPc, arregloUsuario) {
-  for (let i = 0; i < arregloUsuario.length; i++) {
-    if (arregloPc[i] !== arregloUsuario[i]) {
-      desactivarBotones();
-      finalizarJuego();
-      return;
-    }
-  }
-  if (arregloPc.length === arregloUsuario.length) {
-    desactivarBotones();
-    setTimeout(function () {
-      document.querySelector("#mensajes-de-turno").textContent = "Turno de la pc";
-    }, miniPausa * 2);
-    setTimeout(desarrollarJuego, miniPausa * 2);
-  }
-}
 
 function mostrarElementos(elemento) {
   document.querySelector(`#${elemento}`).classList.toggle("oculto");
@@ -140,18 +63,65 @@ function finalizarJuego() {
   ocultarElementos("rondas");
 }
 
-let arregloJugadasPc = [];
-let arregloJugadasUsuario = [];
-let cantidadDeRondas = 0;
-const MILISEGUNDOS = 1000;
-const colores = ["verde", "rojo", "amarillo", "azul"];
+function compararSecuencias(arregloPc, arregloUsuario) {
+  for (let i = 0; i < arregloUsuario.length; i++) {
+    if (arregloPc[i] !== arregloUsuario[i]) {
+      desactivarBotones();
+      finalizarJuego();
+      return;
+    }
+  }
+  if (arregloPc.length === arregloUsuario.length) {
+    desactivarBotones();
+    setTimeout(function () {
+      document.querySelector("#mensajes-de-turno").textContent = "Turno de la pc";
+    }, miniPausa * 2);
+    setTimeout(desarrollarJuego, miniPausa * 2);
+  }
+}
 
+function animarBoton(boton, sonido){
+  boton.style.opacity = 0.5;
+  boton.style.transform = "scale(1.3)";
+  sonido.play();
+  setTimeout(function(){
+    boton.style.opacity = 1;
+    boton.style.transform = "scale(1)";
+  }, (MILISEGUNDOS/2));
+};
+
+document.querySelectorAll(".botones-colores").forEach(function(botonColor){
+  botonColor.onclick = function(){
+    const idNombreColor = botonColor.id;
+    const nombreColor = idNombreColor.slice(6);
+    const $sonidoBoton = document.querySelector(`#sonido-btn-${nombreColor}`)
+    
+    arregloJugadasUsuario.push(nombreColor); 
+    animarBoton(botonColor, $sonidoBoton);
+    compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);  
+  };
+});
+
+function mostrarSecuenciaPC(arreglo) {
+  arreglo.forEach(function (color, index) {
+    const tiempoRetrasadoPC = (index + 1) * MILISEGUNDOS;
+    const $sonido = document.querySelector(`#sonido-btn-${color}`);
+    const $botonColor = document.querySelector(`#boton-${color}`);
+    setTimeout(animarBoton, tiempoRetrasadoPC, $botonColor, $sonido);
+  });
+}
+
+function generarSecuenciaPC(colores) {
+  const numeroAleatorio = Math.floor(Math.random() * colores.length);
+  arregloJugadasPc.push(colores[numeroAleatorio]);
+}
 
 function desarrollarJuego() {
   cantidadDeRondas++;
   document.querySelector("#cantidad-rondas").textContent =
     String(cantidadDeRondas);
-  generarSecuenciaPC();
+  generarSecuenciaPC(colores);
+  mostrarSecuenciaPC(arregloJugadasPc);
   arregloJugadasUsuario = [];
   const tiempoRetrasadoUsuario = (arregloJugadasPc.length + 1) * MILISEGUNDOS;
   setTimeout(function () {
@@ -172,15 +142,3 @@ $botonJugar.onclick = function () {
   };
   desarrollarJuego();
 };
-
-document.querySelectorAll(".botones-colores").forEach(function(botonColor){
-  botonColor.onclick = function(){
-    const idNombreColor = botonColor.id;
-    const nombreColor = idNombreColor.slice(6);
-    const $sonidoBoton = document.querySelector(`#sonido-btn-${nombreColor}`)
-    
-    arregloJugadasUsuario.push(nombreColor); 
-    animarBoton(botonColor, $sonidoBoton);
-    compararSecuencias(arregloJugadasPc, arregloJugadasUsuario);  
-  };
-});
