@@ -71,9 +71,7 @@ p{
     transform: scale(1);
     transition: transform 0.5s;
 }
-.botones-colores:hover{
-    transform: scale(1.1);
-}
+
 
 #conjunto-botones{
     display: grid;

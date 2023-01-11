@@ -12,7 +12,7 @@ function validarNombre(nombre) {
 }
 
  
-const miniPausa = 700;
+
 const $botonOk = document.querySelector("#boton-ok");
 $botonOk.onclick = function (event) {
   document.querySelector("#btn-jugar").classList.add("oculto");
@@ -33,7 +33,7 @@ $botonOk.onclick = function (event) {
   if (!errorNombre) {
     setTimeout(function () {
       mostrarElementos("btn-jugar");
-    }, MILISEGUNDOS);
+    }, UN_SEGUNDO);
     ocultarElementos("nombre-de-usuario");
     mostrarElementos("registro-usuario");
   }
